@@ -1,29 +1,26 @@
+import ExpenseDate from '../components/ExpenseDate'
 import '../components/ExpenseItem.css'
-
+import Card from "../components/Card"
 function ExpenseItems(props)
 {
 
-    let date=props.date.getDate();
-    let Month =props.date.toLocaleString('default', { month: 'long' });
-    let year=props.date.getYear();
-    // console.log(props.date)
+    const x= ()=>
+    {
+        console.log("Title has changed");
+    };
     
     return (
 
-        <div className='expense-item'>
+        <Card className='expense-item'>
 
-    <div>
-        <div>{Month}</div>
-        <div>{props.date.getFullYear()}</div>
-        <div>{date}</div>
+        <ExpenseDate date={props.date}></ExpenseDate>
         
-        </div>
-
     <div className='expense-item__description'>
     <h2>{props.title}</h2>
     <div className='expense-item__price'>{props.amount}</div>
+    <button onClick={x} type="submit">Change The title</button>
     </div>
-    </div>
+    </Card>
     );
 }
 

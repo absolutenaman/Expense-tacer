@@ -24,11 +24,15 @@ function App() {
   return (
     <div>
       <h2>Let's get started!</h2>
-     { expenses.map(expense =>
+     { expenses.map((expense,i) =>
       {
-       return  <ExpenseItems title={expense.title}
+       return(
+        <div key={i}> 
+        <ExpenseItems title={expense.title}
        date={expense.date}
        amount={expense.amount}></ExpenseItems>
+       </div>
+       )
       }
       )}
      
