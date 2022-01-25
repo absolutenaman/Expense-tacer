@@ -1,6 +1,8 @@
 import ExpenseItems from "../src/components/ExpensesItem"
 import NewExpenses from "./components/NewExpenses/NewExpenses";
 import {useState} from 'react'
+import ExpenseFilter from '../src/components/ExpenseFilter'
+
 const expenses = [
   {
     id: 'e1',
@@ -22,23 +24,53 @@ const expenses = [
     date: new Date(2021, 5, 12),
   },
 ];
+const old=expenses;
 function App() {
   const [expensesState, setExpensesState] = useState(expenses);
-
+  console.log(expensesState);
   
   const onAddExpenseHandler=(NewExpenseProps)=>
 {
-  console.log({...NewExpenseProps});
-  let x=[...expensesState,{...NewExpenseProps}];
+  // console.log(NewExpenseProps +" Added_console");
+  let x=[...expensesState];
+     x.push(NewExpenseProps);
   // expenses.push(NewExpenseProps);
-  // console.log(x);
+  // console.log(JSON.stringify(x)+"After addition");
   setExpensesState(x);
  
 };
+
+
+const onFilterChangeHandler = (new_year)=>
+{
+  // const [filtered_year,setFilteredYear]=useState('2019');
+  // console.log(new_year);
+  let filtered_data=[];
+  // filtered_data.push(old);
+  console.log(old)
+ setExpensesState(old);
+ console.log(expensesState)
+  expensesState.forEach(element => {
+    // console.log(element.date.getFullYear().toString());
+    // console.log(new_year);
+      if(element.date.getFullYear().toString()==new_year)
+  {
+    filtered_data.push(element );
+    //  console.log(element);
+
+  }
+  });
+  setExpensesState(filtered_data);
+  // console.log(JSON.stringify(filtered_data)+"filtered_data");
+  // setFilteredYear(new_year);
+
+}
   return (
     <div>
       {/* <h2>Let's get started!</h2> */}
       <NewExpenses onAddExpense={onAddExpenseHandler}></NewExpenses>
+   <ExpenseFilter onFilterChange={onFilterChangeHandler}></ExpenseFilter>
+   
      { expensesState.map((expense,i) =>
       {
        return(

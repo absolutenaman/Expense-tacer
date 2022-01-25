@@ -2,6 +2,7 @@ import ExpenseDate from './ExpenseDate'
 import '../components/ExpenseItem.css'
 import Card from "./Card"
 import {useState} from 'react'
+
 function ExpenseItems(props)
 {
 
@@ -20,9 +21,9 @@ function ExpenseItems(props)
         <ExpenseDate date={props.date}></ExpenseDate>
         
     <div className='expense-item__description'>
-    <h2>{title}</h2>
+    <h2>{props.title}</h2>
     <div className='expense-item__price'>{props.amount}</div>
-    <button onClick={clickHandler} type="submit">Change The title</button>
+    {/* <button onClick={clickHandler} type="submit">Change The title</button> */}
     </div>
     </Card>
     );
